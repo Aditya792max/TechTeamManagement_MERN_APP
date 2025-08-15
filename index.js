@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const express = require('express');
-
-const mongo = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT;
 
@@ -26,28 +26,11 @@ mongoose.connect(mongoURL)
      });
 
 
-const dev = require('./Schemas/devDetails');
+// Import routes
+const devRoutes = require('./routes/devRoutes.js');
+const teamRoutes = require('./routes/teamRoutes.js');
 
-app.post("/dev-register", async (req, res) => {
-     const { devName, devEmail, devTeam, devExperience, devPhone } = req.body;
-     // Validate the required fields
-     if (!devName || !devEmail || !devTeam || !devExperience || !devPhone) {
-          return res.status(400).json({ status: "Error", error: "All fields are required" });
-     }
-     try {
-          const newDev = await dev.create({
-               devName: devName,
-               devEmail: devEmail,
-               devTeam: devTeam,
-               devExperience: devExperience,
-               devPhone: devPhone
-          });
-          console.log("Dev Account created Successfully");
-          console.log(req.body);
-          return res.status(201).json({ status: "Success", data: newDev });
-     } catch (error) {
-          console.error("Error creating developer:", error);
-          return res.status(500).json({ status: "Error", error: "Internal Server Error" });
-     }
-});
+// Use routes
+app.use('/', devRoutes);
+app.use('/', teamRoutes);
 

@@ -5,6 +5,7 @@ const devDetailsSchema = new mongoose.Schema({
      devEmail: { type: String, required: true, unique: true },
      devTeam: { type: String, required: true },
      devExperience: { type: Number, required: true },
+     devProfile: { type: String, required: true },
      devPhone: { type: String, required: true }
 }, {
      collection: 'devDetails',
