@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const teamLead = require('../Schemas/TeamDetails');
+const teamLead = require('../Schemas/TeamLeadDetails');
 
 
 
@@ -22,10 +22,11 @@ router.post("/team-leadregister", async (req, res) => {
           const newTeamLead = await teamLead.create({
                teamId: teamId,
                teamName: teamName,
-               teamLeadName: teamLead,
+               teamLeadName: teamLeadName,
                teamSize: teamSize
           });
           console.log("Team Lead Registered Successfully");
+          console.log(req.body);
           return res.status(201).json({ status: "Success", data: newTeamLead });
      } catch (error) {
           console.error("Error registering team lead:", error);
