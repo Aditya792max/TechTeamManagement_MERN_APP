@@ -29,8 +29,10 @@ mongoose.connect(mongoURL)
 // Import routes
 const devRoutes = require('./routes/devRoutes.js');
 const teamRoutes = require('./routes/teamRoutes.js');
+const teamLeadRoutes = require('./routes/teamLeadRoutes.js');
 
 // Use routes
 app.use('/', devRoutes);
 app.use('/', teamRoutes);
+app.use('/', teamLeadRoutes);
 
