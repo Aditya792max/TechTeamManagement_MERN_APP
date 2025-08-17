@@ -30,9 +30,10 @@ mongoose.connect(mongoURL)
 const devRoutes = require('./routes/devRoutes.js');
 const teamRoutes = require('./routes/teamRoutes.js');
 const teamLeadRoutes = require('./routes/teamLeadRoutes.js');
-
+const managerRoutes = require('./routes/managerRoutes.js');
 // Use routes
 app.use('/', devRoutes);
 app.use('/', teamRoutes);
 app.use('/', teamLeadRoutes);
+app.use('/', managerRoutes);
 
