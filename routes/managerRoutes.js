@@ -17,7 +17,6 @@ The Schema of the code:
  */
 
 
-
 router.post("/manager-register", async (req, res) => {
      console.log("📝 Received request body:", req.body);
 
